@@ -564,13 +564,13 @@
 
 <script src="config.js"></script>
 <script>
-  const authStorage = window.sessionStorage;
-  const isLoggedIn = authStorage.getItem("isLoggedIn");
+  const pageAuthStorage = window.sessionStorage;
+  const isLoggedIn = pageAuthStorage.getItem("isLoggedIn");
   if (!isLoggedIn) window.location.href = "about.html";
   else document.getElementById("historyTab").style.display = "inline";
 
   function logout() {
-    authStorage.clear();
+    pageAuthStorage.clear();
     window.location.href = "about.html";
   }
 </script>
