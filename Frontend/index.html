@@ -566,12 +566,12 @@
 <script>
   const authStorage = window.sessionStorage;
   const isLoggedIn = authStorage.getItem("isLoggedIn");
-  if (!isLoggedIn) window.location.href = "login.html";
+  if (!isLoggedIn) window.location.href = "about.html";
   else document.getElementById("historyTab").style.display = "inline";
 
   function logout() {
     authStorage.clear();
-    window.location.href = "login.html";
+    window.location.href = "about.html";
   }
 </script>
 <script src="script.js"></script>
