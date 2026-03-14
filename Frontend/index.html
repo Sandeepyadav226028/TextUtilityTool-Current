@@ -27,7 +27,6 @@
             --border-color: #e0e0e0;
         }
 
-        /* Dark theme variables */
         [data-theme="dark"] {
             --primary-color: #5e9eff;
             --secondary-color: #4a8bff;
@@ -60,7 +59,6 @@
             transition: var(--transition);
         }
 
-        /* Animated background shapes */
         .bg-shape {
             position: fixed;
             border-radius: 50%;
@@ -97,12 +95,8 @@
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(10deg);
-            }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
         }
 
         .container {
@@ -111,7 +105,6 @@
             padding: 0 20px;
         }
 
-        /* Header Styles */
         .header {
             background-color: var(--card-bg);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -173,13 +166,8 @@
             transition: width 0.3s ease;
         }
 
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--primary-color); }
 
         .theme-toggle {
             background: none;
@@ -194,9 +182,7 @@
             transition: var(--transition);
         }
 
-        .theme-toggle:hover {
-            background-color: rgba(74, 144, 226, 0.1);
-        }
+        .theme-toggle:hover { background-color: rgba(74, 144, 226, 0.1); }
 
         .sun-icon, .moon-icon {
             width: 24px;
@@ -204,19 +190,8 @@
             color: var(--text-color);
         }
 
-        /* Main Content */
-        .main {
-            flex: 1;
-            padding: 3rem 0;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            margin-bottom: 3rem;
-            animation: fadeIn 1s ease;
-        }
-
+        .main { flex: 1; padding: 3rem 0; }
+        .hero { text-align: center; margin-bottom: 3rem; animation: fadeIn 1s ease; }
         .hero-title {
             font-family: 'Poppins', sans-serif;
             font-size: 3rem;
@@ -251,7 +226,6 @@
             margin: 0 auto;
         }
 
-        /* Card Styles */
         .card {
             background-color: var(--card-bg);
             border-radius: 16px;
@@ -287,7 +261,6 @@
             box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
         }
 
-        /* Button Grid */
         .button-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -321,9 +294,7 @@
             transition: left 0.5s ease;
         }
 
-        .btn:hover::before {
-            left: 100%;
-        }
+        .btn:hover::before { left: 100%; }
 
         .btn-primary {
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
@@ -345,7 +316,6 @@
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
-        /* Grid Layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -373,25 +343,10 @@
             border-radius: 2px;
         }
 
-        .summary-content, .preview-content {
-            margin-bottom: 1.5rem;
-        }
-
-        .summary-text {
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .summary-value {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .preview-placeholder {
-            color: var(--text-secondary);
-            font-style: italic;
-        }
+        .summary-content, .preview-content { margin-bottom: 1.5rem; }
+        .summary-text { margin-bottom: 0.8rem; font-size: 1rem; color: var(--text-secondary); }
+        .summary-value { font-weight: 600; color: var(--primary-color); }
+        .preview-placeholder { color: var(--text-secondary); font-style: italic; }
 
         .btn-copy {
             background-color: var(--light-color);
@@ -410,20 +365,9 @@
             border-color: var(--primary-color);
         }
 
-        .copy-icon, .check-icon {
-            width: 20px;
-            height: 20px;
-        }
+        .copy-icon, .check-icon { width: 20px; height: 20px; }
+        .check-icon, .copied-text { display: none; }
 
-        .check-icon {
-            display: none;
-        }
-
-        .copied-text {
-            display: none;
-        }
-
-        /* Footer */
         .footer {
             background-color: var(--card-bg);
             padding: 2rem 0;
@@ -439,10 +383,7 @@
             gap: 1.5rem;
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
+        .social-links { display: flex; gap: 1rem; }
 
         .social-link {
             display: flex;
@@ -462,11 +403,6 @@
             transform: translateY(-3px);
         }
 
-        .social-link svg {
-            width: 20px;
-            height: 20px;
-        }
-
         .footer-text {
             display: flex;
             align-items: center;
@@ -475,84 +411,38 @@
             font-size: 0.9rem;
         }
 
-        .heart-icon {
-            width: 16px;
-            height: 16px;
-            color: var(--accent-color);
-        }
+        .heart-icon { width: 16px; height: 16px; color: var(--accent-color); }
+        .footer-link { color: var(--primary-color); text-decoration: none; font-weight: 500; }
+        .footer-link:hover { text-decoration: underline; }
 
-        .footer-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .footer-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .button-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
+            .header-content { flex-direction: column; gap: 1rem; }
+            .nav { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .hero-title { font-size: 2rem; }
+            .button-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
         }
     </style>
 </head>
 <body>
-    <!-- Animated background shapes -->
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
     <div class="bg-shape shape-3"></div>
 
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -573,18 +463,15 @@
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="5" />
-                        <path
-                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-                    
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="main">
         <div class="container">
-            <!-- Hero Section -->
             <div class="hero">
                 <h1 class="hero-title">
                     Fastest online tool to manipulate your text for
@@ -595,63 +482,30 @@
                 </p>
             </div>
 
-            <!-- Text Input Section -->
             <div class="card">
-                <textarea id="textInput" class="text-input" placeholder="Type or paste your content here"
-                    rows="10"></textarea>
+                <textarea id="textInput" class="text-input" placeholder="Type or paste your content here" rows="10"></textarea>
             </div>
 
-            <!-- Action Buttons -->
             <div class="card">
                 <div class="button-grid">
-                    <button class="btn btn-primary" onclick="transformText('uppercase')">
-                        <i class="fas fa-arrow-up"></i> UPPERCASE
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('lowercase')">
-                        <i class="fas fa-arrow-down"></i> lowercase
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('titleCase')">
-                        <i class="fas fa-heading"></i> Title Case
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('sentenceCase')">
-                        <i class="fas fa-font"></i> Sentence case
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('removeExtraSpace')">
-                        <i class="fas fa-compress-alt"></i> Remove Extra Space
-                    </button>
-                    <button class="btn btn-primary" onclick="downloadText()">
-                        <i class="fas fa-download"></i> Download Text
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('reverseText')">
-                        <i class="fas fa-exchange-alt"></i> Reverse
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('toggleCase')">
-                        <i class="fas fa-text-height"></i> Toggle Case
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('vowelCount')">
-                        <i class="fas fa-chart-pie"></i> Count Vowels
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('consonantCount')">
-                        <i class="fas fa-chart-bar"></i> Count Consonants
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('isPalindrome')">
-                        <i class="fas fa-sync-alt"></i> Check Palindrome
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('base64Encode')">
-                        <i class="fas fa-lock"></i> Base64 Encode
-                    </button>
-                    <button class="btn btn-primary" onclick="transformText('base64Decode')">
-                        <i class="fas fa-unlock"></i> Base64 Decode
-                    </button>
-                    <button class="btn btn-danger" onclick="transformText('clearText')">
-                        <i class="fas fa-trash-alt"></i> Clear Text
-                    </button>
+                    <button class="btn btn-primary" onclick="transformText('uppercase')"><i class="fas fa-arrow-up"></i> UPPERCASE</button>
+                    <button class="btn btn-primary" onclick="transformText('lowercase')"><i class="fas fa-arrow-down"></i> lowercase</button>
+                    <button class="btn btn-primary" onclick="transformText('titleCase')"><i class="fas fa-heading"></i> Title Case</button>
+                    <button class="btn btn-primary" onclick="transformText('sentenceCase')"><i class="fas fa-font"></i> Sentence case</button>
+                    <button class="btn btn-primary" onclick="transformText('removeExtraSpace')"><i class="fas fa-compress-alt"></i> Remove Extra Space</button>
+                    <button class="btn btn-primary" onclick="downloadText()"><i class="fas fa-download"></i> Download Text</button>
+                    <button class="btn btn-primary" onclick="transformText('reverseText')"><i class="fas fa-exchange-alt"></i> Reverse</button>
+                    <button class="btn btn-primary" onclick="transformText('toggleCase')"><i class="fas fa-text-height"></i> Toggle Case</button>
+                    <button class="btn btn-primary" onclick="transformText('vowelCount')"><i class="fas fa-chart-pie"></i> Count Vowels</button>
+                    <button class="btn btn-primary" onclick="transformText('consonantCount')"><i class="fas fa-chart-bar"></i> Count Consonants</button>
+                    <button class="btn btn-primary" onclick="transformText('isPalindrome')"><i class="fas fa-sync-alt"></i> Check Palindrome</button>
+                    <button class="btn btn-primary" onclick="transformText('base64Encode')"><i class="fas fa-lock"></i> Base64 Encode</button>
+                    <button class="btn btn-primary" onclick="transformText('base64Decode')"><i class="fas fa-unlock"></i> Base64 Decode</button>
+                    <button class="btn btn-danger" onclick="transformText('clearText')"><i class="fas fa-trash-alt"></i> Clear Text</button>
                 </div>
             </div>
 
-            <!-- Summary and Preview -->
             <div class="grid">
-                <!-- Text Summary -->
                 <div class="card">
                     <h3 class="card-title">Text Summary:</h3>
                     <div class="summary-content">
@@ -665,7 +519,6 @@
                     </div>
                 </div>
 
-                <!-- Text Preview -->
                 <div class="card">
                     <h3 class="card-title">Text Preview:</h3>
                     <div class="preview-content" id="textPreview">
@@ -687,7 +540,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -701,10 +553,8 @@
                 </div>
                 <p class="footer-text">
                     © Copyright 2025. All Right Reserved. Made with
-                    <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
-                        stroke-width="2">
-                        <path
-                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                     </svg>
                     by <a href="https://www.linkedin.com/in/sandeepyadav9670/" class="footer-link">Sandeepyadav</a>
                 </p>
@@ -712,6 +562,7 @@
         </div>
     </footer>
 
+<script src="config.js"></script>
 <script>
   const authStorage = window.sessionStorage;
   const isLoggedIn = authStorage.getItem("isLoggedIn");
@@ -726,6 +577,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
-
-

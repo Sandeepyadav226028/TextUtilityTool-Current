@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About - Text Utility</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-a7317wesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     
@@ -456,11 +456,12 @@
     let attempts = parseInt(localStorage.getItem("guestAttempts") || "0");
     attempts += 1;
     localStorage.setItem("guestAttempts", attempts);
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const authStorage = window.sessionStorage;
+    const isLoggedIn = authStorage.getItem("isLoggedIn");
     if (isLoggedIn || attempts >= 5) {
       // Allow guest mode access
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("username", "Guest");
+      authStorage.setItem("isLoggedIn", "true");
+      authStorage.setItem("username", "Guest");
       window.location.href = "index.html";
     } else {
       setTimeout(() => {
