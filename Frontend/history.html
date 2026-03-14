@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your History - Text Utility</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4a90e2;
+      --secondary-color: #3b78c2;
+      --accent-color: #ff6b6b;
+      --dark-color: #2c3e50;
+      --light-color: #f8f9fa;
+      --bg-secondary: #f1f5f9;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
+      color: var(--dark-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Animated background shapes */
+    .bg-shape {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      background-color: rgba(74, 144, 226, 0.3);
+      top: -100px;
+      left: -100px;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    .shape-2 {
+      width: 250px;
+      height: 250px;
+      background-color: rgba(255, 107, 107, 0.3);
+      bottom: 10%;
+      right: -50px;
+      animation: float 12s infinite ease-in-out alternate;
+    }
+
+    .shape-3 {
+      width: 200px;
+      height: 200px;
+      background-color: rgba(72, 187, 120, 0.3);
+      bottom: 30%;
+      left: 10%;
+      animation: float 10s infinite ease-in-out alternate-reverse;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header Styles */
+    .header {
+      background-color: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin: 0;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--dark-color);
+      font-weight: 500;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      padding: 3rem 0;
+    }
+
+    .history-heading {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .history-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .history-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .history-entry {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      white-space: pre-wrap;
+      word-break: break-word;
+      animation: fadeInUp 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .history-entry::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    }
+
+    .history-entry:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .history-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .history-entry-icon {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+    }
+
+    .history-entry-date {
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    .history-entry-content {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .history-entry-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+    }
+
+    .history-entry-btn {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+
+    .history-entry-btn:hover {
+      background-color: rgba(74, 144, 226, 0.1);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .empty-state-icon {
+      font-size: 4rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      opacity: 0.7;
+    }
+
+    .empty-state-text {
+      font-size: 1.2rem;
+      color: #777;
+    }
+
+    .loading-state {
+      text-align: center;
+      padding: 3rem;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(74, 144, 226, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary-color);
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 1.5rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error-state {
+      text-align: center;
+      padding: 3rem;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .error-icon {
+      font-size: 4rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .error-text {
+      font-size: 1.2rem;
+      color: #777;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .history-heading {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background shapes -->
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">
+        <h1>TextUtilityTool</h1>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="#" onclick="logout()" class="nav-link">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <h2 class="history-heading">Your Text History</h2>
+      <div id="historyContainer">
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p class="empty-state-text">Loading your history...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+    <script>
+    const API_BASE_URL = window.API_BASE_URL || "http://localhost:3000";
+    const authStorage = window.sessionStorage;
+
+    if (!authStorage.getItem("isLoggedIn")) {
+      window.location.href = "login.html";
+    }
+
+    function logout() {
+      authStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    const token = authStorage.getItem("token");
+
+    fetch(`${API_BASE_URL}/api/history`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Server error: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        const container = document.getElementById("historyContainer");
+        container.innerHTML = "";
+
+        if (!data || data.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <i class="fas fa-history empty-state-icon"></i>
+              <p class="empty-state-text">No history found yet.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const historyContainer = document.createElement("div");
+        historyContainer.className = "history-container";
+
+        data.forEach((entry, index) => {
+          const div = document.createElement("div");
+          div.className = "history-entry";
+          div.style.animationDelay = `${index * 0.1}s`;
+
+          const date = new Date(entry.createdAt || Date.now());
+          const dateString =
+            date.toLocaleDateString() +
+            " " +
+            date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+          const header = document.createElement("div");
+          header.className = "history-entry-header";
+
+          const icon = document.createElement("i");
+          icon.className = "fas fa-file-alt history-entry-icon";
+
+          const dateElement = document.createElement("span");
+          dateElement.className = "history-entry-date";
+          dateElement.textContent = dateString;
+
+          const content = document.createElement("div");
+          content.className = "history-entry-content";
+          content.textContent = entry.content;
+
+          const actions = document.createElement("div");
+          actions.className = "history-entry-actions";
+
+          const button = document.createElement("button");
+          button.className = "history-entry-btn";
+          button.type = "button";
+          button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+          button.addEventListener("click", () => copyToClipboard(entry.content));
+
+          header.append(icon, dateElement);
+          actions.appendChild(button);
+          div.append(header, content, actions);
+          historyContainer.appendChild(div);
+        });
+
+        container.appendChild(historyContainer);
+      })
+      .catch(() => {
+        document.getElementById("historyContainer").innerHTML = `
+          <div class="error-state">
+            <i class="fas fa-exclamation-circle error-icon"></i>
+            <p class="error-text">Failed to load history.</p>
+          </div>
+        `;
+      });
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          const notification = document.createElement("div");
+          notification.style.position = "fixed";
+          notification.style.bottom = "20px";
+          notification.style.right = "20px";
+          notification.style.backgroundColor = "var(--primary-color)";
+          notification.style.color = "white";
+          notification.style.padding = "10px 20px";
+          notification.style.borderRadius = "8px";
+          notification.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+          notification.style.zIndex = "1000";
+          notification.style.animation = "fadeInUp 0.3s ease";
+          notification.textContent = "Text copied to clipboard!";
+          document.body.appendChild(notification);
+
+          setTimeout(() => {
+            notification.style.animation = "fadeOut 0.3s ease";
+            setTimeout(() => notification.remove(), 300);
+          }, 3000);
+        })
+        .catch(() => {});
+    }
+
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+</script>
+</body>
+</html>
+
