@@ -1,12 +1,12 @@
-require("../BACKEND/loadEnv");
+require("./loadEnv");
 
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const config = require("../BACKEND/config");
+const config = require("./config");
 
-const authRoutes = require("../BACKEND/routes/auth");
-const historyRoutes = require("../BACKEND/routes/history");
+const authRoutes = require("./routes/auth");
+const historyRoutes = require("./routes/history");
 
 const app = express();
 
