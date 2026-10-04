@@ -46,17 +46,36 @@ app.get("/test", (req, res) => {
   res.json({ ok: true });
 });
 
+// MongoDB connection cache for serverless environment
+let isConnected = false;
+const connectDB = async () => {
+  if (isConnected) return;
+  try {
+    const db = await mongoose.connect(config.mongoUri);
+    isConnected = db.connections[0].readyState === 1;
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+  }
+};
+
+// Ensure DB is connected before handling requests
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/history", historyRoutes);
 
-mongoose
-  .connect(config.mongoUri)
-  .then(() => {
-    console.log("MongoDB connected");
+// Only listen locally if not running on Vercel
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  connectDB().then(() => {
     app.listen(config.port, () => {
       console.log(`Server running on port ${config.port}`);
     });
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
   });
+}
+
+// Export the app for Vercel serverless deployment
+module.exports = app;
